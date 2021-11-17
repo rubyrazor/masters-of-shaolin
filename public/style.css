@@ -1,4 +1,12 @@
 main {
+}
+
+#helper-div1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+#helper-div2 {
     display: flex;
     justify-content: space-around;
 }

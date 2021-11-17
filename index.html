@@ -9,8 +9,25 @@
 </head>
 <body>
     <main id="main">
-        <div v-if="images" v-for="(image) in images">
-            <img :key=`{{image.id}}` :src="image.url" :alt="image.title">
+        <image-modal v-if="seletedImageId" :id="selectdImageId" @close="closeModal"></image-modal>
+
+        <div id="helper-div1">
+            <label for="title">Title</label>
+            <input v-model="title" name="title">
+            <label for="username">Username</label>
+            <input v-model="username" name="username">
+            <label for="description">Description</label>
+            <input v-model="desc" name="desc">
+            <input
+                name="file"
+                type="file"
+                accept="image/*"
+                v-on:change="setFile"
+            >
+            <button v-on:click="upload">Upload</button>
+        </div id="helper-div2">
+        <div v-if="images" v-for="image in images">
+            <img :key="image.id" :src="image.url" :alt="image.title">
             <p>{{image.title}}</p>
         </div>
     </main>

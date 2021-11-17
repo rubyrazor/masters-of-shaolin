@@ -28,7 +28,10 @@ const uploader = multer({
 
 // Logs basic info about all requests.
 app.use((req, res, next) => {
-    console.log(`${req.method} request to ${req.url}`);
+    console.log(
+        "BASIC INFO ABOUT REQUEST: ",
+        `${req.method} request to ${req.url}`
+    );
     next();
 });
 
@@ -42,11 +45,12 @@ app.use(
 // Specifies a directory to serve static content.
 app.use(express.static("./public"));
 
-//Parses JSON-format request bodies
+// Parses JSON-format request bodies.
 app.use(express.json());
 
+// GET route to retrieve all images from DB and send them as JSON file to the app.js
 app.get("/images.json", (req, res) => {
-    db.getData()
+    db.getAllData()
         .then((images) => {
             return res.json(images.rows);
         })
@@ -55,22 +59,31 @@ app.get("/images.json", (req, res) => {
         });
 });
 
-app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
-    console.log("req.body: ", req.body);
-    const { title, username, desc } = req.body;
-    const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
+// GET route to retrieve data from DB by ID
+app.get("/image/:id", (req, res) => {
+    const { id } = req.params;
 
-    console.log("URL: ", url);
-    console.log("TITLE: ", title);
-    console.log("USERNAME:", username);
-    console.log("DESCRIPTION: ", desc);
-    db.addImage(url, username, title, desc)
+    db.getImageData(id)
         .then((data) => {
-            console.log("Logging in addImage: ", data.rows[0]);
             res.json(data.rows[0]);
         })
         .catch((err) => {
-            console.log("Exception when storing data to DB: ", err);
+            console.log("Exception thrown when retireving data from DB: ", err);
+            res.sendStatus(500);
+        });
+});
+
+// POST route to upload image data to DB
+app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
+    const { title, username, desc } = req.body;
+    const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
+
+    db.addImage(url, username, title, desc)
+        .then((data) => {
+            res.json(data.rows[0]);
+        })
+        .catch((err) => {
+            console.log("Exception thrown when storing data to DB: ", err);
             res.sendStatus(500);
         });
 });

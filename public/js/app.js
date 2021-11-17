@@ -1,4 +1,5 @@
 import * as Vue from "./vue.js";
+import modal from "./modal.js";
 
 Vue.createApp({
     data() {
@@ -8,6 +9,7 @@ Vue.createApp({
             username: "",
             desc: "",
             file: null,
+            selectedImageId: "",
         };
     },
 
@@ -18,10 +20,10 @@ Vue.createApp({
 
         upload() {
             const formData = new FormData();
-            formData.append("file", this.file);
             formData.append("title", this.title);
-            formData.append("desc", this.desc);
             formData.append("username", this.username);
+            formData.append("desc", this.desc);
+            formData.append("file", this.file);
             fetch("/upload", {
                 method: "POST",
                 body: formData,
@@ -30,9 +32,15 @@ Vue.createApp({
                     return data.json();
                 })
                 .then((data) => {
-                    console.log(data);
                     return this.images.unshift(data);
                 });
+        },
+        openModal(id) {
+            console.log("Click on image: ", id);
+            this.selectedImageId = id;
+        },
+        closeModal() {
+            this.selectedImageId = "";
         },
     },
 
@@ -42,8 +50,11 @@ Vue.createApp({
                 return data.json();
             })
             .then((data) => {
-                console.log(data);
                 return (this.images = data);
             });
+    },
+
+    components: {
+        modal: modal,
     },
 }).mount("#main");

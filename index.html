@@ -26,7 +26,7 @@
         </div>
         <div id="helper-div2">
             <div v-if="images" v-for="image in images">
-                <img :key="image.id" :src="image.url" :alt="image.title" v-on:click="openModal(image.id)">
+                <img v-bind:key="image.id" v-bind:src="image.url" v-bind:alt="image.title" v-on:click="openModal(image.id)">
                 <p>{{image.title}}</p>
             </div>
         </div>

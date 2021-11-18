@@ -50,6 +50,7 @@ Vue.createApp({
                 return data.json();
             })
             .then((data) => {
+                console.log(data);
                 return (this.images = data);
             });
     },

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS images;
 
 CREATE TABLE images(
-    id SERIAL PRIMARY KEY,
+    id SERIAL primary key,
     url VARCHAR NOT NULL,
     username VARCHAR NOT NULL,
     title VARCHAR NOT NULL,

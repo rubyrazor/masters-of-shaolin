@@ -1,3 +1,4 @@
+const { query } = require("express");
 const spicedPg = require("spiced-pg");
 const dbUsername = "postgres";
 const dbUserPassword = "posgres";
@@ -25,5 +26,17 @@ module.exports.addImage = (url, username, title, desc) => {
                 VALUES($1, $2, $3, $4)
                 RETURNING *`;
     const params = [url, username, title, desc];
+    return db.query(q, params);
+};
+
+module.exports.getComments = () => {
+    const q = "SELECT * FROM comments ORDER BY created_at DESC";
+    return db.query(q);
+};
+
+module.exports.addComment = (id, commentText, commentAuthor) => {
+    const q = `INSERT INTO comments (comment_author, comment_text, image_id)
+                VALUES ($1, $2, $3)`;
+    const params = [commentAuthor, commentText, id];
     return db.query(q, params);
 };

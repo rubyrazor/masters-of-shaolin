@@ -26,6 +26,7 @@ const uploader = multer({
     },
 });
 
+// ------------ HELPER MIDDLEWARE ------------
 // Logs basic info about all requests.
 app.use((req, res, next) => {
     console.log(
@@ -35,20 +36,23 @@ app.use((req, res, next) => {
     next();
 });
 
-// Parses url-encoded request bodies + makes them available as "req.body".
+//   ------------ MIDDLEWARE THAT PARSES REQUEST BODIES ------------
+// #1 Parses url-encoded request bodies + makes them available as "req.body".
 app.use(
     express.urlencoded({
         extended: false,
     })
 );
 
+// #2 Parses JSON-format request bodies.
+app.use(express.json());
+
+//------------ MIDDLEWARE THAT MODFIES PATH-STRUCTURE ------------
 // Specifies a directory to serve static content.
 app.use(express.static("./public"));
 
-// Parses JSON-format request bodies.
-app.use(express.json());
-
-// GET route to retrieve all images from DB and send them as JSON file to the app.js
+// ------------ ROUTES ------------
+// GET route to retrieve all image-data from DB and send them to the app.js
 app.get("/images.json", (req, res) => {
     db.getAllData()
         .then((images) => {
@@ -59,7 +63,7 @@ app.get("/images.json", (req, res) => {
         });
 });
 
-// GET route to retrieve data from DB by ID
+// GET route to retrieve image-data for specifc image from DB by ID and send it to modal.js
 app.get("/image/:id", (req, res) => {
     const { id } = req.params;
 
@@ -73,7 +77,22 @@ app.get("/image/:id", (req, res) => {
         });
 });
 
-// POST route to upload image data to DB
+// GET route to retrieve comments-data form DB and send them to modal.js
+app.get("/comments.json", (req, res) => {
+    db.getComments()
+        .then((data) => {
+            res.json(data.rows);
+        })
+        .catch((err) => {
+            console.log(
+                "Exception thrown while retrievin comments data from DB: ,",
+                err
+            );
+            res.sendStatus(500);
+        });
+});
+
+// POST route to upload image-data to DB
 app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
     const { title, username, desc } = req.body;
     const url = `https://s3.amazonaws.com/spicedling/${req.file.filename}`;
@@ -86,6 +105,19 @@ app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
             console.log("Exception thrown when storing data to DB: ", err);
             res.sendStatus(500);
         });
+});
+
+app.post("/comments/:id", (req, res) => {
+    const { id } = req.params;
+    const { commentText, commentAuthor } = req.body;
+
+    db.addComment(id, commentText, commentAuthor).then((data) => {
+        res.json(data.rows[0]);
+    }).catch((err) => {
+        console.log("Exception thrown when adding a comment to the DB: ", err);
+        res.sendStatus(500);
+    });
+
 });
 
 app.get("*", (req, res) => {

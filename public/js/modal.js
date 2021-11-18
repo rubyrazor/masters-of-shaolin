@@ -1,3 +1,5 @@
+import comment from "./comment.js";
+
 export default {
     data() {
         return {
@@ -11,32 +13,35 @@ export default {
     props: ["id"],
     template: `<div id="modal" @click="click">
                 <img :src="url">
-                {{url}}
                 {{title}}
                 {{username}}
                 {{description}}
-                {{timestamp}}</div>`,
+                {{timestamp}}
+            </div>
+            <comment v-bind:id="id"></comment>`,
     methods: {
         click() {
             this.$emit("close");
         },
     },
-    mounted() {
-        console.log("Mouted in modal got called");
-        console.log("Hello: ", this.id);
+    mounted: function () {
         fetch(`image/${this.id}`)
             .then((res) => {
                 return res.json(res);
             })
             .then((data) => {
-                console.log("Data in mounted: ", data);
-                return (
-                    (this.url = data.url),
-                    (this.username = data.username),
-                    (this.title = data.title),
-                    (this.description = data.desc),
-                    (this.timestamp = data.created_at)
-                );
+                this.url = data.url;
+                this.username = data.username;
+                this.title = data.title;
+                this.description = data.desc;
+                this.timestamp = data.created_at;
+
+                Object.assign(this, data)
+            }).catch((err) => {
+
             });
+    },
+    components: {
+        comment: comment,
     },
 };

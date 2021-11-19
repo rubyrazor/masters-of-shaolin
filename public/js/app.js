@@ -4,12 +4,13 @@ import modal from "./modal.js";
 Vue.createApp({
     data() {
         return {
-            images: null,
+            images: [],
             title: "",
             username: "",
             desc: "",
             file: null,
             selectedImageId: "",
+            lowestId: null,
         };
     },
 
@@ -36,11 +37,27 @@ Vue.createApp({
                 });
         },
         openModal(id) {
-            console.log("Click on image: ", id);
             this.selectedImageId = id;
         },
         closeModal() {
             this.selectedImageId = "";
+        },
+        more() {
+            fetch(`/nextImages/${this.images[this.images.length - 1].id}`)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                    this.lowestId = data[0].lowestId;
+                    this.images = [...this.images, ...data];
+                })
+                .catch((err) => {
+                    console.log(
+                        "Exception thrown when fetching more images, app.js: ",
+                        err
+                    );
+                });
         },
     },
 
@@ -50,8 +67,15 @@ Vue.createApp({
                 return data.json();
             })
             .then((data) => {
-                console.log(data);
-                return (this.images = data);
+                this.images = data;
+                this.lowestId = data[0].lowestId;
+                console.log(this.lowestId);
+            })
+            .catch((err) => {
+                console.log(
+                    "Exception thrown when fetching data in mounted, app.js: ",
+                    err
+                );
             });
     },
 
@@ -59,3 +83,10 @@ Vue.createApp({
         modal: modal,
     },
 }).mount("#main");
+
+// //
+// //get the id from URL
+// location.pathname.slice(1)
+
+// //prevent default in vue
+// <a href="/5" @click.prevent=""

@@ -66,9 +66,10 @@ app.get("/images.json", (req, res) => {
 // GET route to retrieve image-data for specifc image from DB by ID and send it to modal.js
 app.get("/image/:id", (req, res) => {
     const { id } = req.params;
-
+    console.log("Logging in app.get(/image/:id): ", id);
     db.getImageData(id)
         .then((data) => {
+            console.log("logging in app.get, then: ", data);
             res.json(data.rows[0]);
         })
         .catch((err) => {
@@ -78,8 +79,9 @@ app.get("/image/:id", (req, res) => {
 });
 
 // GET route to retrieve comments-data form DB and send them to modal.js
-app.get("/comments.json", (req, res) => {
-    db.getComments()
+app.get("/comments/:selectedImageId", (req, res) => {
+    const { selectedImageId } = req.params;
+    db.getComments(selectedImageId)
         .then((data) => {
             res.json(data.rows);
         })
@@ -88,6 +90,19 @@ app.get("/comments.json", (req, res) => {
                 "Exception thrown while retrievin comments data from DB: ,",
                 err
             );
+            res.sendStatus(500);
+        });
+});
+
+app.get("/nextImages/:lowestId", (req, res) => {
+    const { lowestId } = req.params;
+    console.log(lowestId);
+    db.getNextImages(lowestId)
+        .then((data) => {
+            res.json(data.rows);
+        })
+        .catch((err) => {
+            console.log("Exception thrown in GET /nextImages/:lowestId: ", err);
             res.sendStatus(500);
         });
 });
@@ -107,17 +122,21 @@ app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
         });
 });
 
-app.post("/comments/:id", (req, res) => {
+app.post("/addcomment/:id", (req, res) => {
     const { id } = req.params;
     const { commentText, commentAuthor } = req.body;
 
-    db.addComment(id, commentText, commentAuthor).then((data) => {
-        res.json(data.rows[0]);
-    }).catch((err) => {
-        console.log("Exception thrown when adding a comment to the DB: ", err);
-        res.sendStatus(500);
-    });
-
+    db.addComment(id, commentText, commentAuthor)
+        .then((data) => {
+            res.json(data.rows[0]);
+        })
+        .catch((err) => {
+            console.log(
+                "Exception thrown when adding a comment to the DB: ",
+                err
+            );
+            res.sendStatus(500);
+        });
 });
 
 app.get("*", (req, res) => {

@@ -25,12 +25,14 @@
             <button v-on:click="upload">Upload</button>
         </div>
         <div id="helper-div2">
-            <div v-if="images" v-for="image in images">
+            <div v-for="image in images">
                 <img v-bind:key="image.id" v-bind:src="image.url" v-bind:alt="image.title" v-on:click="openModal(image.id)">
                 <p>{{image.title}}</p>
             </div>
         </div>
-        <modal v-if="selectedImageId" v-bind:id="selectedImageId" @close="closeModal"></modal>
+        <modal v-if="selectedImageId" v-bind:selected-image-id="selectedImageId" @close="closeModal"></modal>
+
+        <button v-if="images.every((image) => image.id != lowestId)" v-on:click="more">More</button>
     </main>
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>

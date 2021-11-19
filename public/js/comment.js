@@ -6,7 +6,7 @@ export default {
             commentAuthor: "",
         };
     },
-    props: ["id"],
+    props: ["selectedImageId"],
     template: `<div>
                     <label for="commentText">Comment</label>
                     <input v-model="commentText" name="commentText">
@@ -21,20 +21,27 @@ export default {
                     </div>
                 </div>`,
     mounted: function () {
-        fetch("/comments.json")
+        fetch(`/comments/${this.selectedImageId}`)
             .then((res) => {
                 return res.json();
             })
             .then((data) => {
-                return (this.comments = data); //Check how data locks like
+                console.log("Logging in mounted, comment.js: ", data);
+                this.comments = data;
+            })
+            .catch((err) => {
+                console.log(
+                    "Exception thrown when retrieving comments-data by id, comment.js: ",
+                    err
+                );
             });
     },
     methods: {
         addComment() {
             console.log(this.commentAuthor);
             console.log(this.commentText);
-            console.log(this.id);
-            fetch(`comments/${this.id}`, {
+            console.log(this.selectedImageId);
+            fetch(`addcomment/${this.selectedImageId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,6 +55,7 @@ export default {
                     return res.json();
                 })
                 .then((data) => {
+                    console.log("Logging in addComment, comment.js: ", data);
                     return this.comments.push(data);
                 });
         },

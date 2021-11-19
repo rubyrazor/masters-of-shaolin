@@ -1,9 +1,9 @@
-#helper-div1 {
+#helper-div2 {
     display: flex;
     justify-content: space-around;
 }
 
-#helper-div2 {
+#helper-div3 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

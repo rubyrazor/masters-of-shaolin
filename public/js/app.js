@@ -9,8 +9,9 @@ Vue.createApp({
             username: "",
             desc: "",
             file: null,
-            selectedImageId: "",
+            selectedImageId: location.pathname.slice(1),
             lowestId: null,
+            notFound: false,
         };
     },
 
@@ -37,10 +38,13 @@ Vue.createApp({
                 });
         },
         openModal(id) {
+            this.notFound = false;
             this.selectedImageId = id;
+            history.pushState({}, "", `${this.selectedImageId}`);
         },
         closeModal() {
             this.selectedImageId = "";
+            history.pushState({}, "", "/");
         },
         more() {
             fetch(`/nextImages/${this.images[this.images.length - 1].id}`)
@@ -48,7 +52,6 @@ Vue.createApp({
                     return res.json();
                 })
                 .then((data) => {
-                    console.log(data);
                     this.lowestId = data[0].lowestId;
                     this.images = [...this.images, ...data];
                 })
@@ -58,6 +61,11 @@ Vue.createApp({
                         err
                     );
                 });
+        },
+        showNotFoundMessage() {
+            this.selectedImageId = null;
+            this.notFound = true;
+            history.replaceState({}, "", "/");
         },
     },
 
@@ -69,7 +77,6 @@ Vue.createApp({
             .then((data) => {
                 this.images = data;
                 this.lowestId = data[0].lowestId;
-                console.log(this.lowestId);
             })
             .catch((err) => {
                 console.log(
@@ -77,6 +84,10 @@ Vue.createApp({
                     err
                 );
             });
+        addEventListener("popstate", () => {
+            console.log("button pressed");
+            this.selectedImageId = location.pathname.slice(1);
+        });
     },
 
     components: {

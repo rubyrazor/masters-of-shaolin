@@ -9,7 +9,10 @@
 </head>
 <body>
     <main id="main">
-        <div id="helper-div1">
+        <div id="helper-div1" v-if="notFound">
+            <p>Image could not be found!</p>
+        </div>
+        <div id="helper-div2">
             <label for="title">Title</label>
             <input v-model="title" name="title">
             <label for="username">Username</label>
@@ -24,13 +27,13 @@
             >
             <button v-on:click="upload">Upload</button>
         </div>
-        <div id="helper-div2">
+        <div id="helper-div3">
             <div v-for="image in images">
                 <img v-bind:key="image.id" v-bind:src="image.url" v-bind:alt="image.title" v-on:click="openModal(image.id)">
                 <p>{{image.title}}</p>
             </div>
         </div>
-        <modal v-if="selectedImageId" v-bind:selected-image-id="selectedImageId" @close="closeModal"></modal>
+        <modal v-if="selectedImageId" v-bind:selected-image-id="selectedImageId" @close="closeModal" @not-found="showNotFoundMessage"></modal>
 
         <button v-if="images.every((image) => image.id != lowestId)" v-on:click="more">More</button>
     </main>

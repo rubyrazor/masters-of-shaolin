@@ -27,16 +27,19 @@ export default {
     mounted: function () {
         fetch(`image/${this.selectedImageId}`)
             .then((res) => {
-                console.log(res);
                 return res.json(res);
             })
             .then((data) => {
-                console.log("Logging in mounted, modal.js: ", data);
-                this.url = data.url;
-                this.username = data.username;
-                this.title = data.title;
-                this.description = data.desc;
-                this.timestamp = data.created_at;
+                if (data.length < 1) {
+                    this.$emit("notFound");
+                } else {
+                    this.url = data[0].url;
+                    this.username = data[0].username;
+                    this.title = data[0].title;
+                    this.description = data[0].desc;
+                    this.timestamp = data[0].created_at;
+                    this.notFound = false;
+                }
             })
             .catch((err) => {
                 console.log(
@@ -49,3 +52,10 @@ export default {
         comment: comment,
     },
 };
+
+//  console.log("Logging data: ", data);
+//  this.url = data.url;
+//  this.username = data.username;
+//  this.title = data.title;
+//  this.description = data.desc;
+//  this.timestamp = data.created_at;

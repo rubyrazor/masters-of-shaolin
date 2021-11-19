@@ -70,7 +70,7 @@ app.get("/image/:id", (req, res) => {
     db.getImageData(id)
         .then((data) => {
             console.log("logging in app.get, then: ", data);
-            res.json(data.rows[0]);
+            res.json(data.rows);
         })
         .catch((err) => {
             console.log("Exception thrown when retireving data from DB: ", err);

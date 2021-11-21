@@ -54,6 +54,7 @@ app.use(express.static("./public"));
 // ------------ ROUTES ------------
 // GET route to retrieve all image-data from DB and send them to the app.js
 app.get("/images.json", (req, res) => {
+    console.log("request made");
     db.getAllData()
         .then((images) => {
             return res.json(images.rows);
@@ -128,6 +129,7 @@ app.post("/addcomment/:id", (req, res) => {
 
     db.addComment(id, commentText, commentAuthor)
         .then((data) => {
+            console.log("logging in serverjs: ", data);
             res.json(data.rows[0]);
         })
         .catch((err) => {

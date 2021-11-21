@@ -15,7 +15,7 @@ module.exports.getAllData = () => {
                 LIMIT 1) AS "lowestId"
                 FROM images
                 ORDER BY id DESC
-                LIMIT 10`;
+                LIMIT 9`;
     return db.query(q);
 };
 
@@ -44,7 +44,8 @@ module.exports.getComments = (selectedImageId) => {
 
 module.exports.addComment = (id, commentText, commentAuthor) => {
     const q = `INSERT INTO comments (comment_author, comment_text, image_id)
-                VALUES ($1, $2, $3)`;
+                VALUES ($1, $2, $3)
+                RETURNING *`;
     const params = [commentAuthor, commentText, id];
     return db.query(q, params);
 };
@@ -57,7 +58,7 @@ module.exports.getNextImages = (lowestId) => {
                 FROM images
                 WHERE id < $1
                 ORDER BY id DESC
-                LIMIT 10`;
+                LIMIT 9`;
     const params = [lowestId];
     return db.query(q, params);
 };

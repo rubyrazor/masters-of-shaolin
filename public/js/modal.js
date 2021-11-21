@@ -11,14 +11,25 @@ export default {
         };
     },
     props: ["selectedImageId"],
-    template: `<div><div id="modal" @click="click">
-                <img :src="url">
-                {{title}}
-                {{username}}
-                {{description}}
-                {{timestamp}}
+    template: `<div id="modal" v-on:click.self="click">
+    <div id="helper-div10">
+        <div id="helper-div4">
+            <img :src="url">
+            <div id=helper-div11>
+                <div id="helper-div-title">
+                    {{title}}
+                </div>
+                <div id="helper-div-description">
+                    {{description}}
+                </div>
+                <div id="helper-div-username-date">
+                    ({{username}} | {{timestamp.slice(0,10)}}, {{timestamp.slice(11,16)}})
+                </div>
             </div>
-            <comment v-bind:selected-image-id="selectedImageId" ></comment></div>`,
+        </div>
+        <comment v-bind:selected-image-id="selectedImageId" ></comment>
+    </div>
+</div>`,
     methods: {
         click() {
             this.$emit("close");
@@ -30,13 +41,15 @@ export default {
                 return res.json(res);
             })
             .then((data) => {
+                console.log("Logging in modal: ", data);
                 if (data.length < 1) {
                     this.$emit("notFound");
                 } else {
+                    console.log(data);
                     this.url = data[0].url;
                     this.username = data[0].username;
                     this.title = data[0].title;
-                    this.description = data[0].desc;
+                    this.description = data[0].description;
                     this.timestamp = data[0].created_at;
                     this.notFound = false;
                 }

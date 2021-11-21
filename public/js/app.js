@@ -26,6 +26,9 @@ Vue.createApp({
             formData.append("username", this.username);
             formData.append("desc", this.desc);
             formData.append("file", this.file);
+            this.title = "";
+            this.username = "";
+            this.desc = "";
             fetch("/upload", {
                 method: "POST",
                 body: formData,
@@ -34,7 +37,7 @@ Vue.createApp({
                     return data.json();
                 })
                 .then((data) => {
-                    return this.images.unshift(data);
+                    this.images.unshift(data);
                 });
         },
         openModal(id) {
@@ -63,9 +66,13 @@ Vue.createApp({
                 });
         },
         showNotFoundMessage() {
+            console.log("Got triggered");
             this.selectedImageId = null;
             this.notFound = true;
             history.replaceState({}, "", "/");
+        },
+        home() {
+            this.notFound = false;
         },
     },
 
@@ -85,7 +92,6 @@ Vue.createApp({
                 );
             });
         addEventListener("popstate", () => {
-            console.log("button pressed");
             this.selectedImageId = location.pathname.slice(1);
         });
     },

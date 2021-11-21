@@ -6,4 +6,4 @@ CREATE TABLE comments(
     comment_text VARCHAR(500) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     image_id INT REFERENCES images(id)
-);
+)

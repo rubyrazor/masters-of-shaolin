@@ -5,38 +5,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imageboard Project</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link href="/style.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <main id="main">
         <div id="helper-div1" v-if="notFound">
-            <p>Image could not be found!</p>
+            <div id="notFoundMessage">Image could not be found!</div>
         </div>
         <div id="helper-div2">
-            <label for="title">Title</label>
-            <input v-model="title" name="title">
-            <label for="username">Username</label>
-            <input v-model="username" name="username">
-            <label for="description">Description</label>
-            <input v-model="desc" name="desc">
-            <input
-            name="file"
-            type="file"
-            accept="image/*"
-            v-on:change="setFile"
-            >
-            <button v-on:click="upload">Upload</button>
+            <div id="helper-div8">
+                <div id="helper-div6" v-on:click="home">
+                    MASTERS
+                </div>
+                <div id="helper-div7">
+                    <div id="helper-div9">
+                         OF SHAOLIN
+                    </div>
+                </div>
+            </div>
+            <div id="helper-div5">
+                <input id="input-header" v-model="title" name="title" value="No title">
+                <label class="label" for="title">
+                    Title
+                </label>
+            </div>
+            <div id="helper-div5">
+                <input id="input-header" v-model="desc" name="desc">
+                <label class="label" for="description">Description</label>
+            </div>
+            <div id="helper-div5">
+                <input id="input-header" v-model="username" name="username" value="Anonymous">
+                <label class="label" for="username">Username</label>
+            </div>
+            <div id="helper-div5">
+                <label for="file-upload" id="custom-file-upload">
+                    CHOOSE FILE
+                    <input
+                    id="file-upload" name="file"
+                    type="file"
+                    accept="image/*"
+                    v-on:change="setFile"
+                    >
+                </label>
+                <button v-on:click="upload">Upload</button>
+            </div>
         </div>
         <div id="helper-div3">
             <div v-for="image in images">
                 <img v-bind:key="image.id" v-bind:src="image.url" v-bind:alt="image.title" v-on:click="openModal(image.id)">
-                <p>{{image.title}}</p>
+                <div id="helper-div-title">{{image.title}}</div>
             </div>
         </div>
-        <modal v-if="selectedImageId" v-bind:selected-image-id="selectedImageId" @close="closeModal" @not-found="showNotFoundMessage"></modal>
-
-        <button v-if="images.every((image) => image.id != lowestId)" v-on:click="more">More</button>
+        <div id="helper-div19">
+            <button id="more-btn" v-if="images.every((image) => image.id != lowestId)" v-on:click="more">More</button>
+        </div>
+        <modal v-if="selectedImageId" v-bind:selected-image-id="selectedImageId" v-on:close="closeModal" v-on:not-found="showNotFoundMessage"></modal>
     </main>
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>
 </html>
+
+
+<!-- <div id="modal" v-on:click.self="click">
+    <div id="helper-div10">
+        <div id="helper-div4">
+            <img :src="url">
+            <div id="helper-div-title">
+                {{title}}
+            </div>
+            <div id="helper-div-description">
+                {{description}}
+            </div>
+            <div id="helper-div-username-date">
+                ({{username}} | {{timestamp}})
+            </div>
+        </div>
+        <comment v-bind:selected-image-id="selectedImageId" ></comment>
+    </div>
+</div> -->

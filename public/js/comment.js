@@ -7,17 +7,30 @@ export default {
         };
     },
     props: ["selectedImageId"],
-    template: `<div>
-                    <label for="commentText">Comment</label>
-                    <input v-model="commentText" name="commentText">
-                    <label for="commentAuthor">Username</label>
-                    <input v-model="commentAuthor" name="commentAuthor">
-                    <button v-on:click="addComment">Upload</button>
-                </div>
-                <div v-if="comments" v-for="comment in comments" >
-                    <div>
-                    <p>{{comment.comment_author}}</p>
-                    <p>{{comment.comment_text}}</p>
+    template: `<div id="helper-div17">
+                    <div id="helper-div12">
+                        <div id="helper-div13">
+                            <input id="input-comment-text" v-model="commentText" name="commentText">
+                            <label class="label" for="commentText">New Comment</label>
+                        </div>
+                        <div id="helper-div14">
+                            <input id="input-comment-author" v-model="commentAuthor" name="commentAuthor">
+                            <label class="label" for="commentAuthor">Username</label>
+                        </div>
+                        <button v-on:click="addComment">Upload</button>
+                    </div>
+                    <div id="helper-div18">
+                        All previous Comments
+                        <div v-if="comments" v-for="comment in comments" >
+                            <div>
+                                <div id="helper-div15">
+                                    {{comment.comment_text}}
+                                </div>
+                                <div id="helper-div16">
+                                    ({{comment.comment_author}})
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>`,
     mounted: function () {
@@ -38,25 +51,26 @@ export default {
     },
     methods: {
         addComment() {
-            console.log(this.commentAuthor);
-            console.log(this.commentText);
-            console.log(this.selectedImageId);
+            let bodyJson = JSON.stringify({
+                commentAuthor: this.commentAuthor,
+                commentText: this.commentText,
+            });
+            this.commentAuthor = "";
+            this.commentText = "";
+
             fetch(`addcomment/${this.selectedImageId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    commentAuthor: this.commentAuthor,
-                    commentText: this.commentText,
-                }),
+                body: bodyJson,
             })
                 .then((res) => {
                     return res.json();
                 })
                 .then((data) => {
-                    console.log("Logging in addComment, comment.js: ", data);
-                    return this.comments.push(data);
+                    console.log("New data: ", data);
+                    this.comments.push(data);
                 });
         },
     },

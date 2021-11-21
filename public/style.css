@@ -1,23 +1,285 @@
+#helper-div1 {
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#notFoundMessage {
+    font-family: "Cinzel", serif;
+    color: red;
+    font-size: 20pt;
+}
+
 #helper-div2 {
+    position: fixed;
     display: flex;
     justify-content: space-around;
+    border: 1px solid black;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 5px;
+    font-family: "Cinzel", serif;
 }
 
 #helper-div3 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    background-color: white;
+    margin-top: 150px;
+}
+
+#helper-div4 {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 10;
+    /* border:1px solid black; */
+    margin: 10px;
+    margin-bottom: 150px;
+}
+
+#helper-div5 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+#helper-div6 {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+#helper-div7 {
+    display: grid;
+    align-items: center;
+    font-weight: 900;
+    margin-left: 4px;
+}
+
+#helper-div8 {
+    display: flex;
+    align-items: center;
+}
+
+#helper-div9 {
+    margin-top: 30px;
+}
+
+#helper-div10 {
+    display: flex;
+    background-color: white;
+    border: 1px solid black;
+    width: 60vw;
+}
+
+#helper-div11 {
+    border: 1px solid black;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 350px;
+    margin: 15px;
 }
 
 img {
+    /* margin-top: 100px; */
     height: 350px;
     width: 350px;
-    border: 3px dotted hotpink;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 15px;
 }
 
 #modal {
+    position: fixed;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+button {
+    margin: 5px;
+    background-color: lightgray;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: red;
+    color: white;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#custom-file-upload {
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background-color: lightgray;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Cinzel", serif;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 20px;
+}
+
+#custom-file-upload:hover {
+    background-color: red;
+    color: white;
+}
+
+.label {
+    border-top: 3px solid black;
+    margin-bottom: 10px;
+    font-family: "Cinzel", serif;
+}
+
+#input-header {
+    margin-top: 60px;
+    outline: none;
+    border: none;
+}
+
+#more-btn {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#more-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+#helper-div19 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+/* -------------- */
+/* MODAL */
+/* -------------- */
+
+#helper-div-title {
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+#helper-div-description {
+    height: 60px;
+    width: 330px;
+    padding: 10px;
+    font-family: "Cinzel", serif;
+    font-size: 10;
+    text-align: center;
+    overflow: scroll;
+}
+
+#helper-div-username-date {
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* -------------- */
+/* COMMENT-SECTION */
+/* -------------- */
+
+#input-comment-text {
+    width: 25vw;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+#input-comment-author {
+    width: 25vw;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+#helper-div12 {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    margin: 25px 10px 10px 10px;
+}
+
+#helper-div13 {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    margin-top: 20px;
+}
+
+#helper-div14 {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+}
+
+#helper-div17 {
+    display: flex;
+    flex-direction: column;
+}
+
+#helper-div15 {
+    font-size: 10pt;
+    margin-top: 10px;
+    width: 25vw;
+}
+
+#helper-div16 {
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+#helper-div18 {
+    border-top: 3px solid black;
+    margin: 0 0 25px 10px;
+    font-family: "Cinzel", serif;
+    width: 25vw;
+    height: 250px;
+    overflow: scroll;
 }

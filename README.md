@@ -4,7 +4,7 @@ An imageboard where afficionados of Shaolin Kung Fu can upload images of their a
 
 <p align="center">
 <img src="/readme-material/landing-page.png" width="400" alt="Landing page">
-<p width="40px" display="inline">
+<p width="40px" display="inline-block">
 <img src="/readme-material/modal.png" width="400" alt="Comment section">
 </p>
 

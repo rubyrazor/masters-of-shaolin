@@ -1,6 +1,6 @@
 # Masters of Shaolin
 
-An imageboard where afficionados of Shaolin Kung Fu can upload images, along with a title and a description, of their adored masters and discuss them in a comment section.
+An imageboard where afficionados of Shaolin Kung Fu can upload images, along with a title and a description, of their adored masters and discuss their uploads in a comment section.
 
 </br>
 
@@ -31,6 +31,7 @@ The **client-side** is built as a single-page application (SAP) with _Vue.js_. I
 The **server-side** is built with _Express_ which is hosted in a _Node.js_ runtime environment. I use the _Multer_ middleware to handle multipart image-data upload. _Uid-safe_ allows me to generate unique names for uploading the images and _AWS S3_ as a reliable, centralised and permanent storage solution for the images.
 
 ### Security
+
 Denial-of-Service (DOS) attacks are averted by setting an 2MB limit for image-upload.
 
 ## How to use

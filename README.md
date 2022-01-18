@@ -6,7 +6,7 @@ An imageboard where afficionados of Shaolin Kung Fu can upload images, along wit
 
 <p align="center">
 <img src="/readme-material/landing-page.png" width="400"  alt="Landing page">
-´<img src="/readme-material/modal.png" width="400" alt="Comment section">
+<img src="/readme-material/modal.png" width="400" alt="Comment section">
 </p>
 
 ## Features
@@ -32,7 +32,7 @@ The **server-side** is built with _Express_ which is hosted in a _Node.js_ runti
 
 ### Security
 
-Denial-of-Service (DOS) attacks are averted by setting an 2MB limit for image-upload.
+Denial-of-Service (DOS) attacks are averted by setting an 2MB limit for image-upload. I use the X-Frame-Options HTTP response header to prevent attempts at clickjacking.
 
 ## How to use
 

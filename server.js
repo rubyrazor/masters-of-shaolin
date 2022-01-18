@@ -51,6 +51,13 @@ app.use(express.json());
 // Specifies a directory to serve static content.
 app.use(express.static("./public"));
 
+//------------ SECURTIY MIDDLEWARE ------------
+// Protects against clickjacking.
+app.use((req, res, next) => {
+    res.setHeader("x-frame-options", "deny");
+    next();
+});
+
 // ------------ ROUTES ------------
 // GET route to retrieve all image-data from DB and send them to the app.js
 app.get("/images.json", (req, res) => {

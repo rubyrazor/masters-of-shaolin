@@ -54,7 +54,6 @@ app.use(express.static("./public"));
 // ------------ ROUTES ------------
 // GET route to retrieve all image-data from DB and send them to the app.js
 app.get("/images.json", (req, res) => {
-    console.log("request made");
     db.getAllData()
         .then((images) => {
             return res.json(images.rows);
@@ -67,10 +66,8 @@ app.get("/images.json", (req, res) => {
 // GET route to retrieve image-data for specifc image from DB by ID and send it to modal.js
 app.get("/image/:id", (req, res) => {
     const { id } = req.params;
-    console.log("Logging in app.get(/image/:id): ", id);
     db.getImageData(id)
         .then((data) => {
-            console.log("logging in app.get, then: ", data);
             res.json(data.rows);
         })
         .catch((err) => {
@@ -97,7 +94,6 @@ app.get("/comments/:selectedImageId", (req, res) => {
 
 app.get("/nextImages/:lowestId", (req, res) => {
     const { lowestId } = req.params;
-    console.log(lowestId);
     db.getNextImages(lowestId)
         .then((data) => {
             res.json(data.rows);
@@ -129,7 +125,6 @@ app.post("/addcomment/:id", (req, res) => {
 
     db.addComment(id, commentText, commentAuthor)
         .then((data) => {
-            console.log("logging in serverjs: ", data);
             res.json(data.rows[0]);
         })
         .catch((err) => {

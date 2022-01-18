@@ -41,11 +41,9 @@ export default {
                 return res.json(res);
             })
             .then((data) => {
-                console.log("Logging in modal: ", data);
                 if (data.length < 1) {
                     this.$emit("notFound");
                 } else {
-                    console.log(data);
                     this.url = data[0].url;
                     this.username = data[0].username;
                     this.title = data[0].title;
@@ -65,10 +63,3 @@ export default {
         comment: comment,
     },
 };
-
-//  console.log("Logging data: ", data);
-//  this.url = data.url;
-//  this.username = data.username;
-//  this.title = data.title;
-//  this.description = data.desc;
-//  this.timestamp = data.created_at;

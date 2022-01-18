@@ -66,7 +66,6 @@ Vue.createApp({
                 });
         },
         showNotFoundMessage() {
-            console.log("Got triggered");
             this.selectedImageId = null;
             this.notFound = true;
             history.replaceState({}, "", "/");
@@ -100,10 +99,3 @@ Vue.createApp({
         modal: modal,
     },
 }).mount("#main");
-
-// //
-// //get the id from URL
-// location.pathname.slice(1)
-
-// //prevent default in vue
-// <a href="/5" @click.prevent=""

@@ -39,7 +39,6 @@ export default {
                 return res.json();
             })
             .then((data) => {
-                console.log("Logging in mounted, comment.js: ", data);
                 this.comments = data;
             })
             .catch((err) => {
@@ -69,7 +68,6 @@ export default {
                     return res.json();
                 })
                 .then((data) => {
-                    console.log("New data: ", data);
                     this.comments.push(data);
                 });
         },

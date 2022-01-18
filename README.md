@@ -3,9 +3,8 @@
 An imageboard where afficionados of Shaolin Kung Fu can upload images of their adored masters and discuss them in a comment section.
 
 <p align="center">
-<img src="/readme-material/landing-page.png" width="400" alt="Landing page">
-<p width="40px" display="inline-block">
-<img src="/readme-material/modal.png" width="400" alt="Comment section">
+<img src="/readme-material/landing-page.png" width="400"  alt="Landing page">
+´<img src="/readme-material/modal.png" width="400" alt="Comment section">
 </p>
 
 ## Features

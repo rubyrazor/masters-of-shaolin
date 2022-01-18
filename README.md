@@ -1,6 +1,6 @@
 # Masters of Shaolin
 
-An imageboard where afficionados of Shaolin Kung Fu can upload images of their adored masters and discuss them in a comment section.
+An imageboard where afficionados of Shaolin Kung Fu can upload images, along with a title and a description, of their adored masters and discuss them in a comment section.
 
 </br>
 
@@ -15,11 +15,12 @@ The imageboard allows users to
 
 -   upload images along with a title and textual description
 -   comment on uploaded pictures in a comment section for each picture which opens by clicking on the image
--   load more pages with pictures
+-   load more pages with pictures by clicking on a more-button
 
 ## Stack
 
 [![Vue.js Badge](https://img.shields.io/badge/-Vue.js-4FC08D?style=for-the-badge&labelColor=302d2d&logo=vue.js&logoColor=4FC08D)](#)
+[![Node.js Badge](https://img.shields.io/badge/-Node.js-3C873A?style=for-the-badge&labelColor=302d2d&logo=node.js&logoColor=3C873A)](#)
 [![Express Badge](https://img.shields.io/badge/-Express-000000?style=for-the-badge&labelColor=f7efef&logo=express&logoColor=000000)](#)
 [![Amazon AWS Badge](https://img.shields.io/badge/-Amazon%20AWS-232F3E?style=for-the-badge&labelColor=white&logo=amazon%20aws&logoColor=232F3E)](#)
 

@@ -24,8 +24,6 @@ The imageboard allows users to
 [![Express Badge](https://img.shields.io/badge/-Express-000000?style=for-the-badge&labelColor=f7efef&logo=express&logoColor=000000)](#)
 [![Amazon AWS Badge](https://img.shields.io/badge/-Amazon%20AWS-232F3E?style=for-the-badge&labelColor=white&logo=amazon%20aws&logoColor=232F3E)](#)
 
-</br>
-
 ### Development
 
 The **client-side** is built as a single-page application (SAP) with _Vue.js_. I use the _Browser History API_ to change the url shown in the location bar of the browser whenever the user changes what is displayed.

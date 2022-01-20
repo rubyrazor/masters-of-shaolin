@@ -19,10 +19,11 @@ The imageboard allows users to
 
 ## Stack
 
-[![Vue.js Badge](https://img.shields.io/badge/-Vue.js-4FC08D?style=for-the-badge&labelColor=302d2d&logo=vue.js&logoColor=4FC08D)](#)
-[![Node.js Badge](https://img.shields.io/badge/-Node.js-3C873A?style=for-the-badge&labelColor=302d2d&logo=node.js&logoColor=3C873A)](#)
-[![Express Badge](https://img.shields.io/badge/-Express-000000?style=for-the-badge&labelColor=f7efef&logo=express&logoColor=000000)](#)
 [![Amazon AWS Badge](https://img.shields.io/badge/-Amazon%20AWS-232F3E?style=for-the-badge&labelColor=white&logo=amazon%20aws&logoColor=232F3E)](#)
+[![Express Badge](https://img.shields.io/badge/-Express-000000?style=for-the-badge&labelColor=f7efef&logo=express&logoColor=000000)](#)
+[![JavaScript Badge](https://img.shields.io/badge/-JavaScript-F0DB4F?style=for-the-badge&labelColor=302d2d&logo=javascript&logoColor=F0DB4F)](#)
+[![Node.js Badge](https://img.shields.io/badge/-Node.js-3C873A?style=for-the-badge&labelColor=302d2d&logo=node.js&logoColor=3C873A)](#)
+[![Vue.js Badge](https://img.shields.io/badge/-Vue.js-4FC08D?style=for-the-badge&labelColor=302d2d&logo=vue.js&logoColor=4FC08D)](#)
 
 ### Development
 
@@ -34,14 +35,9 @@ The **server-side** is built with _Express_ which is hosted in a _Node.js_ runti
 
 Denial-of-Service (DOS) attacks are averted by setting an 2MB limit for image-upload. I use the X-Frame-Options HTTP response header to prevent attempts at clickjacking.
 
-## How to use
-
-To fork and work with this project:
+## Install & Run
 
 1. Clone the repository: `git clone git@github.com:rubyrazor/masters-of-shaolin.git`
-
 2. Go inside the directory: `cd masters-of-shaolin`
-
 3. Install dependencies: `npm install`
-
 4. Start development server: `node server.js`

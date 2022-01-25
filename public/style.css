@@ -41,7 +41,6 @@
     align-items: center;
     background-color: white;
     z-index: 10;
-    /* border:1px solid black; */
     margin: 10px;
     margin-bottom: 150px;
 }
@@ -95,7 +94,6 @@
 }
 
 img {
-    /* margin-top: 100px; */
     height: 350px;
     width: 350px;
     border: 1px solid black;

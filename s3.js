@@ -29,7 +29,7 @@ module.exports.upload = (req, res, next) => {
         next();
         fs.unlink(path, () => console.log("File removed"));
     }).catch((err) => {
-        console.log("Error when uploading", err);
+        console.log("Exeption thrown when uploading picture", err);
         return res.sendStatus(500);
     });
 };

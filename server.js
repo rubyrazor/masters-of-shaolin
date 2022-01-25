@@ -66,7 +66,7 @@ app.get("/images.json", (req, res) => {
             return res.json(images.rows);
         })
         .catch((err) => {
-            console.log("Exception in GET /images: ", err);
+            console.log("Exception in /images.json route: ", err);
         });
 });
 
@@ -78,7 +78,7 @@ app.get("/image/:id", (req, res) => {
             res.json(data.rows);
         })
         .catch((err) => {
-            console.log("Exception thrown when retireving data from DB: ", err);
+            console.log("Exception thrown in /image/:id route: ", err);
             res.sendStatus(500);
         });
 });
@@ -92,7 +92,7 @@ app.get("/comments/:selectedImageId", (req, res) => {
         })
         .catch((err) => {
             console.log(
-                "Exception thrown while retrievin comments data from DB: ,",
+                "Exception thrown in /comments/:selectedImageId route: ,",
                 err
             );
             res.sendStatus(500);
@@ -106,7 +106,7 @@ app.get("/nextImages/:lowestId", (req, res) => {
             res.json(data.rows);
         })
         .catch((err) => {
-            console.log("Exception thrown in GET /nextImages/:lowestId: ", err);
+            ("Exception thrown in GET /nextImages/:lowestId: ", err);
             res.sendStatus(500);
         });
 });
@@ -121,7 +121,7 @@ app.post("/upload", uploader.single("file"), s3.upload, function (req, res) {
             res.json(data.rows[0]);
         })
         .catch((err) => {
-            console.log("Exception thrown when storing data to DB: ", err);
+            console.log("Exception thrown in /upload route: ", err);
             res.sendStatus(500);
         });
 });
@@ -136,7 +136,7 @@ app.post("/addcomment/:id", (req, res) => {
         })
         .catch((err) => {
             console.log(
-                "Exception thrown when adding a comment to the DB: ",
+                "Exception thrown in /addcomment/:id route: ",
                 err
             );
             res.sendStatus(500);

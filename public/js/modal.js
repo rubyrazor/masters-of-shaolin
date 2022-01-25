@@ -54,7 +54,7 @@ export default {
             })
             .catch((err) => {
                 console.log(
-                    "Exception when fetching selected image-data in modal.js: ",
+                    "Exception when fetching selected image-data, modal.js: ",
                     err
                 );
             });

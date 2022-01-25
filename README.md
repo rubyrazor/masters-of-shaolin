@@ -1,6 +1,6 @@
 # Masters of Shaolin
 
-An imageboard where afficionados of Shaolin Kung Fu can upload images, along with a title and a description, of their adored masters and discuss their uploads in a comment section. I built the network in an intense one-week project while attending a full-time coding bootcamp with SPICED Academy, Berlin, from Sept 2021 to Dec 2021.
+An imageboard where afficionados of Shaolin Kung Fu can upload images of their adored masters and discuss their uploads in a comment section. I built the network in an intense one-week project while attending a full-time coding bootcamp with SPICED Academy, Berlin, from Sept 2021 to Dec 2021.
 
 
 </br>
@@ -14,7 +14,7 @@ An imageboard where afficionados of Shaolin Kung Fu can upload images, along wit
 
 The imageboard allows users to
 
--   upload images, along with a title and textual description,
+-   upload images (along with a title and textual description),
 -   comment on pictures in a comment section,
 -   load more pictures by clicking on a more-button.
 
@@ -30,7 +30,7 @@ The imageboard allows users to
 
 The **client-side** is built as a single-page application (SAP) with _Vue_. I utilise the _Browser History API_ to change the url shown in the location bar of the browser whenever the user changes what is displayed.
 
-The **server-side** is built with _Express_ and _Node_. I use the _Multer_ middleware to handle multipart image-data upload. _Uid-safe_ allows me to generate unique names for uploading the images. I use _AWS S3_ as a reliable, centralised and permanent storage solution for the images.
+The **server-side** is built with _Express_ and _Node_. I use the _Multer_ middleware to handle multipart image-data upload. _Uid-safe_ allows me to generate unique names for uploading the images and avoiding mix-ups. I use _AWS S3_ as a reliable, centralised and permanent storage solution for the images.
 
 ### Security
 

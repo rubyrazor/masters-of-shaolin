@@ -2,12 +2,11 @@
 
 An imageboard where afficionados of Shaolin Kung Fu can upload images of their adored masters and discuss their uploads in a comment section. I built the network in an intense one-week project while attending a full-time coding bootcamp with SPICED Academy, Berlin, from Sept 2021 to Dec 2021.
 
-
 </br>
 
 <p align="center">
-<img src="/readme-material/landing-page.png" width="400"  alt="Landing page">
-<img src="/readme-material/modal.png" width="400" alt="Comment section">
+<img src="https://user-images.githubusercontent.com/85343170/150962543-c3164046-f08a-48fa-b970-1dfbb2d2f8b7.png" width="400"  alt="Landing page">
+<img src="https://user-images.githubusercontent.com/85343170/150963044-ea88815c-df55-4342-bbae-baeb6132f678.png" width="400" alt="Comment section">
 </p>
 
 ## Features
